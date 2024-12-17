@@ -11,7 +11,14 @@ const Person = mongoose.model('Person', PersonSchema);
 mongoose.connect(process.env.MONGO_URI, 
   {useNewUrlParser: true, useUnifiedTopology: true});
 
-
+var createAndSaveP = function (done) {
+  var mary = new Person({
+    name: "Mary Jones", age: 20, favoriteFoods: ["pizza", "pasta"]});
+  mary.save((err,data)=>{
+    if (err) return console.error(err);
+    done(null, data);
+  })
+}
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
 };

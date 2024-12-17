@@ -1,4 +1,5 @@
 require('dotenv').config();
+const e = require('express');
 let mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const PersonSchema = new Schema({
@@ -19,6 +20,12 @@ var createAndSaveP = function (done) {
     done(null, data);
   })
 }
+createAndSaveP((err, data)=>{
+  if (err)
+      console.log(err);
+  else
+    console.log("success");
+})
 const createAndSavePerson = (done) => {
   done(null /*, data*/);
 };

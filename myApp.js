@@ -12,23 +12,25 @@ const Person = mongoose.model('Person', PersonSchema);
 mongoose.connect(process.env.MONGO_URI, 
   {useNewUrlParser: true, useUnifiedTopology: true});
 
-var createAndSaveP = function (done) {
+const createAndSavePerson = function (done) {
   var mary = new Person({
     name: "Mary Jones", age: 20, favoriteFoods: ["pizza", "pasta"]});
   mary.save((err,data)=>{
     if (err) return console.error(err);
+    else
     done(null, data);
   })
 }
-createAndSaveP((err, data)=>{
+createAndSavePerson((err, data)=>{
   if (err)
       console.log(err);
   else
-    console.log("success");
+    console.log("success",data);
 })
-const createAndSavePerson = (done) => {
-  done(null /*, data*/);
-};
+//const createAndSavePerson = (done) => {
+//  done(null /*, data*/);
+//};
+
 
 const createManyPeople = (arrayOfPeople, done) => {
   done(null /*, data*/);

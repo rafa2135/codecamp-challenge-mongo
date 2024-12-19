@@ -31,10 +31,30 @@ createAndSavePerson((err, data)=>{
 //  done(null /*, data*/);
 //};
 
+var arrayOfPeople=[
+  {
+    name: "Mary Jones", age: 20, favoriteFoods: ["pizza", "pasta"]
+  },
+  {
+    name: "John Doe", age: 30, favoriteFoods: ["hamburger", "hot dogs"]
+  },
+  {
+    name: "Bob Smith", age: 40, favoriteFoods: ["hamburger", "hot dogs"]
+  }
+]
 
 const createManyPeople = (arrayOfPeople, done) => {
-  done(null /*, data*/);
+  Person.create(arrayOfPeople, (err, data)=> {
+    if (err) return console.log(err);
+    done(null, data);    
+  })  
 };
+createManyPeople(arrayOfPeople, (err, data)=>{
+  if (err)
+      console.log(err);
+  else
+    console.log("success",data);
+})
 
 const findPeopleByName = (personName, done) => {
   done(null /*, data*/);

@@ -140,7 +140,7 @@ findAndUpdate("Bob Smith", (err, data)=>{
     console.log("success we updated Bob Smith ",data);
 })
 
-const removeById = (personId, done) => {
+/*const removeById = (personId, done) => {
   Person.findByIdAndRemove(personId, (err, found)=>{
     if (err)
       return console.log(err);
@@ -154,13 +154,23 @@ removeById("6764bb2132683a3a954df012", (err, data)=>{
       console.log(err);
   else
     console.log("success we removed ID 6764bb2132683a3a954df012 ",data);
-})
+})*/
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
-  done(null /*, data*/);
+  Person.remove({name: nameToRemove}, (err, found)=>{
+    if (err)
+      return console.log(err);
+    else
+      done(null, found);
+  })
 };
+removeManyPeople((err, data)=>{
+  if (err)
+      console.log(err);
+  else
+    console.log("success we removed Mary ",data);
+})
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";

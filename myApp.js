@@ -21,15 +21,12 @@ const createAndSavePerson = function (done) {
     done(null, data);
   })
 }
-createAndSavePerson((err, data)=>{
+/*createAndSavePerson((err, data)=>{
   if (err)
       console.log(err);
   else
     console.log("success",data);
-})
-//const createAndSavePerson = (done) => {
-//  done(null /*, data*/);
-//};
+})*/
 
 var arrayOfPeople=[
   {
@@ -49,16 +46,28 @@ const createManyPeople = (arrayOfPeople, done) => {
     done(null, data);    
   })  
 };
-createManyPeople(arrayOfPeople, (err, data)=>{
+
+/*createManyPeople(arrayOfPeople, (err, data)=>{
   if (err)
       console.log(err);
   else
-    console.log("success",data);
-})
+    console.log("success creating multiple people",data);
+})*/
 
 const findPeopleByName = (personName, done) => {
-  done(null /*, data*/);
+  Person.find({name: personName}, (err, found)=>{
+    if (err) 
+      return console.log(err);
+    else
+      done(null, found);
+  })  
 };
+findPeopleByName("John Doe", (err, data)=>{
+  if (err)
+      console.log(err);
+  else
+    console.log("success we found ",data);
+})
 
 const findOneByFood = (food, done) => {
   done(null /*, data*/);

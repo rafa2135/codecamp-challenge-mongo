@@ -86,8 +86,19 @@ findOneByFood("hamburger", (err, data)=>{
 })
 
 const findPersonById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findById(personId, (err, found)=>{
+    if (err) 
+      return console.log(err);
+    else
+      done(null, found);
+  })
 };
+findPersonById("6764bb2132683a3a954df011",(err,data)=>{
+  if(err)
+    console.log(err);
+  else
+    console.log("success we found ID 6764bb2132683a3a954df011 ",data);
+})
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";

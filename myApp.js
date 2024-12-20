@@ -141,8 +141,20 @@ findAndUpdate("Bob Smith", (err, data)=>{
 })
 
 const removeById = (personId, done) => {
-  done(null /*, data*/);
+  Person.findByIdAndRemove(personId, (err, found)=>{
+    if (err)
+      return console.log(err);
+    else
+      done(null, found);
+  })
 };
+
+removeById("6764bb2132683a3a954df012", (err, data)=>{
+  if (err)
+      console.log(err);
+  else
+    console.log("success we removed ID 6764bb2132683a3a954df012 ",data);
+})
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";

@@ -62,12 +62,12 @@ const findPeopleByName = (personName, done) => {
       done(null, found);
   })  
 };
-findPeopleByName("John Doe", (err, data)=>{
+/*findPeopleByName("John Doe", (err, data)=>{
   if (err)
       console.log(err);
   else
     console.log("success we found ",data);
-})
+})*/
 
 const findOneByFood = (food, done) => {
   Person.findOne({favoriteFoods: food}, (err, found)=>{
@@ -78,12 +78,12 @@ const findOneByFood = (food, done) => {
   })
 };
 
-findOneByFood("hamburger", (err, data)=>{
+/*findOneByFood("hamburger", (err, data)=>{
   if (err)
       console.log(err);
   else
     console.log("success we found ",data);
-})
+})*/
 
 const findPersonById = (personId, done) => {
   Person.findById(personId, (err, found)=>{
@@ -93,12 +93,12 @@ const findPersonById = (personId, done) => {
       done(null, found);
   })
 };
-findPersonById("6764bb2132683a3a954df011",(err,data)=>{
+/*findPersonById("6764bb2132683a3a954df011",(err,data)=>{
   if(err)
     console.log(err);
   else
     console.log("success we found ID 6764bb2132683a3a954df011 ",data);
-})
+})*/
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
@@ -117,12 +117,12 @@ const findEditThenSave = (personId, done) => {
   })
 };
 
-findEditThenSave("6764bb2132683a3a954df011", (err, data)=>{
+/*findEditThenSave("6764bb2132683a3a954df011", (err, data)=>{
   if (err)
       console.log(err);
   else
     console.log("success we added hamburger to ID 6764bb2132683a3a954df011 ",data);
-})
+})*/
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
@@ -133,14 +133,14 @@ const findAndUpdate = (personName, done) => {
       done(null, found);
   })  
 };
-findAndUpdate("Bob Smith", (err, data)=>{
+/*findAndUpdate("Bob Smith", (err, data)=>{
   if (err)
       console.log(err);
   else
     console.log("success we updated Bob Smith ",data);
-})
+})*/
 
-/*const removeById = (personId, done) => {
+const removeById = (personId, done) => {
   Person.findByIdAndRemove(personId, (err, found)=>{
     if (err)
       return console.log(err);
@@ -148,7 +148,7 @@ findAndUpdate("Bob Smith", (err, data)=>{
       done(null, found);
   })
 };
-
+/*
 removeById("6764bb2132683a3a954df012", (err, data)=>{
   if (err)
       console.log(err);
@@ -158,26 +158,37 @@ removeById("6764bb2132683a3a954df012", (err, data)=>{
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-  Person.remove({name: nameToRemove}, (err, found)=>{
+  /*Person.remove({name: nameToRemove}, (err, found)=>{
     if (err)
       return console.log(err);
     else
       done(null, found);
-  })
+  })*/
 };
-removeManyPeople((err, data)=>{
+/*removeManyPeople((err, data)=>{
   if (err)
       console.log(err);
   else
     console.log("success we removed Mary ",data);
-})
+})*/
 
 const queryChain = (done) => {
+  
   const foodToSearch = "burrito";
-
-  done(null /*, data*/);
+  Person.find({ favoriteFoods: foodToSearch })
+    .sort({ name: 1 })
+    .limit(2)
+    .select({ name: 1, _id: 0 })
+    .exec((err, data) => {
+      if (err) {
+        console.error(err); 
+        return done(err);
+      } else {
+        
+        done(null, data);
+      }
+    });
 };
-
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
  */

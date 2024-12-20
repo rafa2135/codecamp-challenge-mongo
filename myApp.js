@@ -126,7 +126,7 @@ findEditThenSave("6764bb2132683a3a954df011", (err, data)=>{
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
-  Person.findByIdAndUpdate(personName, {age: ageToSet}, {new: true}, (err, found)=>{
+  Person.findOneAndUpdate(personName, {age: ageToSet}, {new: true}, (err, found)=>{
     if (err)
       return console.log(err);
     else

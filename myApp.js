@@ -126,18 +126,18 @@ findEditThenSave("6764bb2132683a3a954df011", (err, data)=>{
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
-  Person.findOneAndUpdate(personName, {age: ageToSet}, {new: true}, (err, found)=>{
+  Person.findOneAndUpdate({name: personName}, {age: ageToSet}, {new: true}, (err, found)=>{
     if (err)
       return console.log(err);
     else
       done(null, found);
   })  
 };
-findAndUpdate("6764bb2132683a3a954df011", (err, data)=>{
+findAndUpdate("Bob Smith", (err, data)=>{
   if (err)
       console.log(err);
   else
-    console.log("success we updated 6764bb2132683a3a954df011 ",data);
+    console.log("success we updated Bob Smith ",data);
 })
 
 const removeById = (personId, done) => {
